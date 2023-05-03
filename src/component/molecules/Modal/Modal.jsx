@@ -1,10 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import ReactDOM from "react-dom";
 
-export default function Modal({ text, judul, isi }) {
+export default function Modal({ text, textdisable, judul, disable, children }) {
 	const [isShowing, setIsShowing] = useState(false);
 	const wrapperRef = useRef(null);
-
 	useEffect(() => {
 		function handleClickOutside(event) {
 			if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
@@ -18,18 +17,27 @@ export default function Modal({ text, judul, isi }) {
 	}, [wrapperRef]);
 	return (
 		<>
-			<button
-				onClick={() => setIsShowing(true)}
-				className="w-full inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap rounded bg-emerald-500 px-5 text-sm font-medium tracking-wide text-white transition duration-300 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none">
-				<span>{text}</span>
-			</button>
+			{disable ? (
+				<button
+					disabled
+					className="w-full inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap rounded bg-emerald-500 px-5 text-sm font-medium tracking-wide text-white transition duration-300 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none">
+					<span>{textdisable}</span>
+				</button>
+			) : (
+				<button
+					onClick={() => setIsShowing(true)}
+					className="w-full inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap rounded bg-emerald-500 px-5 text-sm font-medium tracking-wide text-white transition duration-300 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none">
+					<span>{text}</span>
+				</button>
+			)}
+
 			{isShowing && typeof document !== "undefined"
 				? ReactDOM.createPortal(
 						<div
 							className="fixed top-0 left-0 z-20 flex h-screen w-screen items-center justify-center bg-slate-300/20 backdrop-blur-sm"
 							aria-labelledby="header-1a content-1a"
 							aria-modal="true"
-							tabindex="-1"
+							tabIndex="-1"
 							role="dialog">
 							{/*    <!-- Modal --> */}
 							<div
@@ -66,19 +74,8 @@ export default function Modal({ text, judul, isi }) {
 									</button>
 								</header>
 								{/*        <!-- Modal body --> */}
-								<div id="content-1a" className="flex-1 overflow-auto">
-									{isi}
-								</div>
-								{/*        <!-- Modal actions --> */}
-								<div className="flex justify-start gap-2">
-									<button className="inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap rounded bg-emerald-500 px-5 text-sm font-medium tracking-wide text-white transition duration-300 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none">
-										<span>Submit</span>
-									</button>
-									<button
-										className="inline-flex h-10 items-center justify-center gap-2 justify-self-center whitespace-nowrap rounded px-5 text-sm font-medium tracking-wide text-emerald-500 transition duration-300 hover:bg-emerald-100 hover:text-emerald-600 focus:bg-emerald-200 focus:text-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:text-emerald-300 disabled:shadow-none disabled:hover:bg-transparent"
-										onClick={() => setIsShowing(false)}>
-										<span>Close</span>
-									</button>
+								<div id="content-1a" className="flex-1 overflow-hidden">
+									{children}
 								</div>
 							</div>
 						</div>,

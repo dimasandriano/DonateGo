@@ -3,7 +3,7 @@ import Card from "../../molecules/Card/Card";
 import { useSubscription } from "@apollo/client";
 import { getDonationCard } from "../../../config/apollo/donasi";
 import moment from "moment/moment";
-import Loading from "../../molecules/Loading/Loading";
+import Loading from "../../atoms/Loading/Loading";
 
 function Donasi() {
 	const { loading, data } = useSubscription(getDonationCard);
@@ -13,10 +13,11 @@ function Donasi() {
 			<h1 className="mb-5 text-3xl font-semibold leading-tight text-gray-900">
 				Donasi Terbuka
 			</h1>
-			{loading && <Loading />}
+			{loading && <Loading css="w-20" />}
 			<div className="grid grid-cols-4 gap-6 md:grid-cols-8 lg:grid-cols-12">
-				{data?.donasi.map((item) => (
+				{data?.donasi.map((item, idx) => (
 					<Card
+						key={idx}
 						img={item.foto_donasi}
 						tanggal={moment(item.timestamp).format("DD MMMM YYYY")}
 						judul={item.judul_donasi}

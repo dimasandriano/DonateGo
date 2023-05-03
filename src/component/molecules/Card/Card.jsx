@@ -13,7 +13,9 @@ function Card({ img, tanggal, judul, terkumpul, donatur, target, uuid }) {
 				<div className="p-4">
 					<p className="text-slate-400 text-xs">{tanggal}</p>
 					<h3 className="text-lg font-medium text-slate-700 mb-2">{judul}</h3>
-					<p className=" text-xs mb-1">Terkumpul : Rp. {terkumpul}</p>
+					<p className=" text-xs mb-1">
+						Terkumpul : Rp. {terkumpul.toLocaleString()}
+					</p>
 					<div>
 						<span id="ProgressLabel" className="sr-only">
 							Loading
@@ -39,7 +41,7 @@ function Card({ img, tanggal, judul, terkumpul, donatur, target, uuid }) {
 							<h4>Target</h4>
 							<span className="flex items-center text-sm">
 								<TbMoneybag />
-								Rp. {target}
+								Rp. {target.toLocaleString()}
 							</span>
 						</div>
 						<div className="text-right">

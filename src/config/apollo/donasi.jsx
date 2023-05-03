@@ -17,7 +17,7 @@ export const getDonationCard = gql`
 	}
 `;
 export const getDetailDonation = gql`
-	subscription getDetailDonation($uuid: uuid!) {
+	query getDetailDonation($uuid: uuid!) {
 		donasi(where: { uuid: { _eq: $uuid } }) {
 			id
 			judul_donasi
@@ -27,12 +27,35 @@ export const getDetailDonation = gql`
 			uuid
 			deskripsi_donasi
 			foto_donasi
-			history {
+			history(limit: 5, order_by: { timestamp: desc }) {
 				nama
 				jumlah_donasi
 				tanggal_donasi
 				isverif
 			}
+		}
+	}
+`;
+export const insertHistoryDonation = gql`
+	mutation insertHistoryDonation(
+		$id_donasi: Int!
+		$nama: String!
+		$email: String!
+		$nohp: bigint!
+		$bukti_donasi: String!
+		$jumlah_donasi: numeric!
+	) {
+		insert_history_donasi_one(
+			object: {
+				id_donasi: $id_donasi
+				nama: $nama
+				email: $email
+				nohp: $nohp
+				jumlah_donasi: $jumlah_donasi
+				bukti_donasi: $bukti_donasi
+			}
+		) {
+			id_history
 		}
 	}
 `;

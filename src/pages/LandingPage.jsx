@@ -1,9 +1,9 @@
 import React from "react";
-import Navbar from "../component/organism/Navbar/Navbar";
-import Hero from "../component/organism/Hero/Hero";
-import Stats from "../component/organism/Stats/Stats";
-import Donasi from "../component/organism/Donasi/Donasi";
-import Footer from "../component/organism/Footer/Footer";
+import Navbar from "../component/organisms/Navbar/Navbar";
+import Hero from "../component/organisms/Hero/Hero";
+import Stats from "../component/organisms/Stats/Stats";
+import Donasi from "../component/organisms/Donasi/Donasi";
+import Footer from "../component/organisms/Footer/Footer";
 
 function LandingPage() {
 	return (

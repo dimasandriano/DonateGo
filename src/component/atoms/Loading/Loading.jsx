@@ -1,9 +1,9 @@
 import React from "react";
 import loadingAnimate from "../../../assets/loading.svg";
-function Loading() {
+function Loading({ css }) {
 	return (
 		<div className="flex justify-center">
-			<img src={loadingAnimate} alt="" className="w-20" />
+			<img src={loadingAnimate} alt="" className={css} />
 		</div>
 	);
 }
