@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 export const AlertSuccess = (text) => {
 	toast.success(text, {
 		position: "top-right",
-		autoClose: 2000,
+		autoClose: 1500,
 		hideProgressBar: false,
 		closeOnClick: true,
 		pauseOnHover: true,
@@ -16,7 +16,7 @@ export const AlertSuccess = (text) => {
 export const AlertWarn = (text) => {
 	toast.warn(text, {
 		position: "top-right",
-		autoClose: 2000,
+		autoClose: 1500,
 		hideProgressBar: false,
 		closeOnClick: true,
 		pauseOnHover: true,
@@ -28,7 +28,7 @@ export const AlertWarn = (text) => {
 export const AlertInfo = (text) => {
 	toast.info(text, {
 		position: "top-right",
-		autoClose: 2000,
+		autoClose: 1500,
 		hideProgressBar: false,
 		closeOnClick: true,
 		pauseOnHover: true,
@@ -40,7 +40,7 @@ export const AlertInfo = (text) => {
 export const AlertError = (text) => {
 	toast.error(text, {
 		position: "top-right",
-		autoClose: 2000,
+		autoClose: 1500,
 		hideProgressBar: false,
 		closeOnClick: true,
 		pauseOnHover: true,

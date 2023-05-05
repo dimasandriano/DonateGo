@@ -104,13 +104,15 @@ function Navbar() {
 									<span>About</span>
 								</a>
 							</li>
-							<li role="none" className="flex items-center">
-								<button className=" h-10  px-5 text-sm font-medium tracking-wide text-white transition duration-300 rounded shadow-md whitespace-nowrap bg-emerald-500 shadow-emerald-200 hover:bg-emerald-600 hover:shadow-sm hover:shadow-emerald-200 focus:bg-emerald-700 focus:shadow-sm focus:shadow-emerald-200 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none">
-									<span>Login</span>
+							<li className="flex items-center">
+								<button
+									onClick={() => navigate("/login")}
+									className="h-10 px-5 text-sm font-medium tracking-wide text-white transition duration-300 rounded shadow-md whitespace-nowrap bg-emerald-500 shadow-emerald-200 hover:bg-emerald-600 hover:shadow-sm hover:shadow-emerald-200 focus:bg-emerald-700 focus:shadow-sm focus:shadow-emerald-200 focus-visible:outline-none ">
+									Login
 								</button>
 							</li>
 						</ul>
-						<div className="ml-auto flex items-center px-1 md:px-6 ">
+						{/* <div className="ml-auto flex items-center px-1 md:px-4 ">
 							<label
 								htmlFor="AcceptConditions"
 								className="relative h-8 w-14 cursor-pointer">
@@ -150,7 +152,7 @@ function Navbar() {
 
 								<span className="absolute inset-0 rounded-full bg-gray-300 transition peer-checked:bg-green-500"></span>
 							</label>
-						</div>
+						</div> */}
 					</nav>
 				</div>
 			</header>

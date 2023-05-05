@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 export const getDonationCard = gql`
 	subscription getDonationCard {
-		donasi {
+		donasi(order_by: { id: asc }) {
 			uuid
 			id
 			judul_donasi
@@ -17,7 +17,7 @@ export const getDonationCard = gql`
 	}
 `;
 export const getDetailDonation = gql`
-	query getDetailDonation($uuid: uuid!) {
+	subscription getDetailDonation($uuid: uuid!) {
 		donasi(where: { uuid: { _eq: $uuid } }) {
 			id
 			judul_donasi

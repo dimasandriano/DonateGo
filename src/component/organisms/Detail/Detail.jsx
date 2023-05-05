@@ -261,7 +261,7 @@ function Detail({ donasi, loading }) {
 											<li className="flex items-center gap-4 py-3" key={idx}>
 												<div className="flex items-center self-center shrink-0">
 													<img
-														src="https://tailwindmix.b-cdn.net/products/product-shoe-01.jpeg"
+														src={`https://ui-avatars.com/api/?name=${item.nama}`}
 														alt="product image"
 														className="w-14 rounded"
 													/>

@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Loading from "../../atoms/Loading/Loading";
 
-function Stats() {
+function Stats({ loading, data, loadingDonaturVerif, dataDonaturVerif }) {
+	const donatur = data?.donasi.map((item) => item);
+	const donaturVerif = dataDonaturVerif?.history_donasi.map((item) => item);
+	const [donations, setDonations] = useState([]);
+	const getTotalHistoryLength = (donation) => {
+		return donation.history.length;
+	};
+
+	const totalHistoryLength = donations.reduce(
+		(acc, donation) => acc + getTotalHistoryLength(donation),
+		0
+	);
+	useEffect(() => {
+		if (data) {
+			setDonations(data?.donasi);
+		}
+	}, [data]);
 	return (
 		<section className="px-4 py-12 mx-auto max-w-7xl">
 			<div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
@@ -20,7 +37,7 @@ function Stats() {
 					</div>
 					<div className="ml-3">
 						<h2 className="mb-1 text-lg font-bold leading-none text-gray-900 truncate">
-							563
+							{loading ? <Loading css="w-5 -ml-8" /> : totalHistoryLength}
 						</h2>
 						<p className="text-sm leading-none text-gray-600">Donatur</p>
 					</div>
@@ -41,7 +58,11 @@ function Stats() {
 					</div>
 					<div className="ml-3">
 						<h2 className="mb-1 text-lg font-bold leading-none text-gray-900 truncate">
-							62
+							{loadingDonaturVerif ? (
+								<Loading css="w-5 -ml-16" />
+							) : (
+								donaturVerif?.length
+							)}
 						</h2>
 						<p className="text-sm leading-none text-gray-600">Sukses/Terverif</p>
 					</div>
@@ -62,7 +83,11 @@ function Stats() {
 					</div>
 					<div className="ml-3">
 						<h2 className="mb-1 text-lg font-bold leading-none text-gray-900 truncate">
-							24
+							{loading || loadingDonaturVerif ? (
+								<Loading css="w-5 -ml-28" />
+							) : (
+								totalHistoryLength - donaturVerif?.length
+							)}
 						</h2>
 						<p className="text-sm leading-none text-gray-600">
 							Failed/Belum Terveriff
@@ -85,7 +110,7 @@ function Stats() {
 					</div>
 					<div className="ml-3">
 						<h2 className="mb-1 text-lg font-bold leading-none text-gray-900 truncate">
-							12,655
+							{loading ? <Loading css="w-5 -ml-16" /> : donatur?.length}
 						</h2>
 						<p className="text-sm leading-none text-gray-600">Tempat Donasi</p>
 					</div>
