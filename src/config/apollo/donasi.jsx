@@ -59,3 +59,15 @@ export const insertHistoryDonation = gql`
 		}
 	}
 `;
+export const getDonatur = gql`
+	subscription getDonatur($limit: Int!, $nama: String!) {
+		history_donasi(limit: $limit, where: { nama: { _ilike: $nama } }) {
+			nama
+			email
+			nohp
+			jumlah_donasi
+			tanggal_donasi
+			isverif
+		}
+	}
+`;

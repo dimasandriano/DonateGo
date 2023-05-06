@@ -27,10 +27,10 @@ function Card({ img, tanggal, judul, terkumpul, donatur, target, uuid }) {
 							className="block rounded-full bg-gray-200">
 							<span
 								className="block h-4 rounded-full bg-emerald-500 text-center text-[10px]/4"
-								style={{ width: `${persen}%` }}>
+								style={{ width: `${persen > 100 ? "100" : persen}%` }}>
 								<span className="font-bold text-white">
 									{" "}
-									{persen > 5 ? `${persen}%` : ""}{" "}
+									{persen > 5 ? `${persen < 100 ? persen : "100"}%` : ""}{" "}
 								</span>
 							</span>
 						</span>

@@ -5,6 +5,7 @@ import {
 	AdminEditDonasi,
 	Dashboard,
 	DetailDonasi,
+	Donatur,
 	LandingPage,
 	Login,
 } from "../../pages";
@@ -18,6 +19,11 @@ export const Routing = [
 	{
 		path: "/detaildonasi/:uuid",
 		element: <DetailDonasi />,
+		isPrivate: false,
+	},
+	{
+		path: "/donatur",
+		element: <Donatur />,
 		isPrivate: false,
 	},
 	{

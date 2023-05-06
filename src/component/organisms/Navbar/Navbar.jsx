@@ -80,9 +80,9 @@ function Navbar() {
 									role="menuitem"
 									aria-haspopup="false"
 									tabIndex="0"
-									className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:bg-emerald-50 focus:outline-none focus-visible:outline-none lg:px-8"
-									href="#">
-									<span>Features</span>
+									className="flex items-center cursor-pointer gap-1 py-4 transition-colors duration-300 hover:text-emerald-500 focus:bg-emerald-50 focus:outline-none focus-visible:outline-none lg:px-5"
+									onClick={() => navigate("/")}>
+									<span>Home</span>
 								</a>
 							</li>
 							<li role="none" className="flex items-stretch">
@@ -91,9 +91,9 @@ function Navbar() {
 									aria-current="page"
 									aria-haspopup="false"
 									tabIndex="0"
-									className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:bg-emerald-50 focus:outline-none focus-visible:outline-none lg:px-8"
-									href="#">
-									<span>Pricing</span>
+									className="flex items-center cursor-pointer gap-1 py-4 transition-colors duration-300 hover:text-emerald-500 focus:bg-emerald-50 focus:outline-none focus-visible:outline-none lg:px-5"
+									href="#donasi">
+									<span>List Donasi</span>
 								</a>
 							</li>
 							<li role="none" className="flex items-stretch">
@@ -101,9 +101,9 @@ function Navbar() {
 									role="menuitem"
 									aria-haspopup="false"
 									tabIndex="0"
-									className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:bg-emerald-50 focus:outline-none focus-visible:outline-none lg:px-8"
-									href="#">
-									<span>About</span>
+									className="flex items-center cursor-pointer gap-1 py-4 transition-colors duration-300 hover:text-emerald-500 focus:bg-emerald-50 focus:outline-none focus-visible:outline-none lg:px-5"
+									onClick={() => navigate("/donatur")}>
+									<span>List Donatur</span>
 								</a>
 							</li>
 							<li className="flex items-center">
