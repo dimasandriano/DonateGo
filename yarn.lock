@@ -2831,6 +2831,7 @@ __metadata:
     tailwindcss: ^3.3.1
     vite: ^4.2.0
     yup: ^1.1.1
+    zukeeper: ^1.0.2
     zustand: ^4.3.8
   languageName: unknown
   linkType: soft
@@ -2961,6 +2962,13 @@ __metadata:
   version: 0.8.15
   resolution: "zen-observable@npm:0.8.15"
   checksum: b7289084bc1fc74a559b7259faa23d3214b14b538a8843d2b001a35e27147833f4107590b1b44bf5bc7f6dfe6f488660d3a3725f268e09b3925b3476153b7821
+  languageName: node
+  linkType: hard
+
+"zukeeper@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "zukeeper@npm:1.0.2"
+  checksum: 1ccec2b505b608961a42d23808d7268d18b7d3780ac01ea1796bd4225f696158023dffd89f0291c2f4e515c5695c7724db1ef2b8806f92542f970d411f7b59b2
   languageName: node
   linkType: hard
 

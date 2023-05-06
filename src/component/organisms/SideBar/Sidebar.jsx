@@ -1,8 +1,16 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import { store } from "../../../config/zustand/store";
 
 function Sidebar() {
 	const navigate = useNavigate();
+	const setLogin = store((state) => state.setLogin);
+	const handleLogout = () => {
+		if (window.confirm("Anda akan logout?")) {
+			navigate("/");
+			setLogin(false);
+		}
+	};
 	return (
 		<div>
 			<div className="shadow-sm">
@@ -96,6 +104,21 @@ function Sidebar() {
 									<path d="M1070 1178l306-564h-654l-306 564h654zm722-282q0 182-71 348t-191 286-286 191-348 71-348-71-286-191-191-286-71-348 71-348 191-286 286-191 348-71 348 71 286 191 191 286 71 348z"></path>
 								</svg>
 								<span className="mx-4 text-lg font-normal">Landing Page</span>
+								<span className="flex-grow text-right"></span>
+							</a>
+							<a
+								className="hover:text-gray-800 cursor-pointer hover:bg-emerald-100 flex items-center p-2 my-6 transition-colors   duration-200  text-gray-600  rounded-lg "
+								onClick={handleLogout}>
+								<svg
+									width="20"
+									height="20"
+									className="m-auto"
+									fill="currentColor"
+									viewBox="0 0 2048 1792"
+									xmlns="http://www.w3.org/2000/svg">
+									<path d="M1070 1178l306-564h-654l-306 564h654zm722-282q0 182-71 348t-191 286-286 191-348 71-348-71-286-191-191-286-71-348 71-348 191-286 286-191 348-71 348 71 286 191 191 286 71 348z"></path>
+								</svg>
+								<span className="mx-4 text-lg font-normal">Logout</span>
 								<span className="flex-grow text-right"></span>
 							</a>
 						</nav>

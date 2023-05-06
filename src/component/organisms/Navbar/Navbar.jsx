@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { store } from "../../../config/zustand/store";
 
 function Navbar() {
 	const [isToggleOpen, setIsToggleOpen] = useState(false);
 	const navigate = useNavigate();
+	const isLogin = store((state) => state.isLogin);
 	return (
 		<>
 			<header className="border-b-1 relative z-20 w-full border-b border-slate-200 bg-white/90 shadow-lg shadow-slate-700/5 after:absolute after:top-full after:left-0 after:z-10 after:block after:h-px after:w-full after:bg-slate-200 lg:border-slate-200 lg:backdrop-blur-sm lg:after:hidden">
@@ -105,11 +107,19 @@ function Navbar() {
 								</a>
 							</li>
 							<li className="flex items-center">
-								<button
-									onClick={() => navigate("/login")}
-									className="h-10 px-5 text-sm font-medium tracking-wide text-white transition duration-300 rounded shadow-md whitespace-nowrap bg-emerald-500 shadow-emerald-200 hover:bg-emerald-600 hover:shadow-sm hover:shadow-emerald-200 focus:bg-emerald-700 focus:shadow-sm focus:shadow-emerald-200 focus-visible:outline-none ">
-									Login
-								</button>
+								{isLogin ? (
+									<button
+										onClick={() => navigate("/admin/dashboard")}
+										className="h-10 px-5 text-sm font-medium tracking-wide text-white transition duration-300 rounded shadow-md whitespace-nowrap bg-emerald-500 shadow-emerald-200 hover:bg-emerald-600 hover:shadow-sm hover:shadow-emerald-200 focus:bg-emerald-700 focus:shadow-sm focus:shadow-emerald-200 focus-visible:outline-none ">
+										Dashboard
+									</button>
+								) : (
+									<button
+										onClick={() => navigate("/login")}
+										className="h-10 px-5 text-sm font-medium tracking-wide text-white transition duration-300 rounded shadow-md whitespace-nowrap bg-emerald-500 shadow-emerald-200 hover:bg-emerald-600 hover:shadow-sm hover:shadow-emerald-200 focus:bg-emerald-700 focus:shadow-sm focus:shadow-emerald-200 focus-visible:outline-none ">
+										Login
+									</button>
+								)}
 							</li>
 						</ul>
 						{/* <div className="ml-auto flex items-center px-1 md:px-4 ">

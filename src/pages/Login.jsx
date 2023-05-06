@@ -1,19 +1,50 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { store } from "../config/zustand/store";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import AlertContainer from "../component/atoms/Alert/AlertContainer";
+import { AlertError, AlertSuccess } from "../component/atoms/Alert/Alert";
 
 function Login() {
 	const navigate = useNavigate();
 	const isLogin = store((state) => state.isLogin);
 	const setIsLogin = store((state) => state.setLogin);
+
+	const email = "admin@gmail.com";
+	const password = "pancasila";
+
+	const formik = useFormik({
+		initialValues: {
+			email: "",
+			password: "",
+		},
+		validationSchema: Yup.object().shape({
+			email: Yup.string().email("Isi email dengan benar").required(),
+			password: Yup.string().required(),
+		}),
+		onSubmit: (values) => {
+			if (values.email === email && values.password === password) {
+				setIsLogin(true);
+				AlertSuccess("Login Berhasil");
+				setTimeout(() => {
+					navigate("/admin/dashboard");
+				}, 2500);
+			} else {
+				AlertError("email dan password salah");
+			}
+			formik.resetForm();
+		},
+	});
 	return (
 		<div>
+			<AlertContainer />
 			<div className="absolute bg-gradient-to-tr from-emerald-300 via-emerald-100 to-white w-full h-full -z-10 blur-sm"></div>
 			<div className="flex justify-center items-center h-screen">
 				<div className="w-full max-w-sm">
 					<div className="py-3">
 						<button
-							onClick={() => navigate(-1)}
+							onClick={() => navigate("/")}
 							className="px-4 py-2 bg-emerald-400 text-white rounded-md hover:bg-emerald-500 ">
 							Kembali
 						</button>
@@ -49,14 +80,25 @@ function Login() {
 
 							<p className="mt-1 text-center text-gray-500 ">Login Sekarang</p>
 
-							<form>
+							<form onSubmit={formik.handleSubmit}>
 								<div className="w-full mt-4">
 									<input
 										className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-emerald-400  focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
 										type="email"
 										placeholder="Email Address"
 										aria-label="Email Address"
+										name="email"
+										value={formik.values.email}
+										onChange={formik.handleChange}
+										onBlur={formik.handleBlur}
 									/>
+									<small className=" py-1 text-xs transition text-slate-400 peer-invalid:text-pink-500">
+										<span className="text-red-400">
+											{formik.touched.email && formik.errors.email
+												? formik.errors.email
+												: ""}
+										</span>
+									</small>
 								</div>
 
 								<div className="w-full mt-4">
@@ -65,11 +107,24 @@ function Login() {
 										type="password"
 										placeholder="Password"
 										aria-label="Password"
+										name="password"
+										value={formik.values.password}
+										onChange={formik.handleChange}
+										onBlur={formik.handleBlur}
 									/>
+									<small className=" py-1 text-xs transition text-slate-400 peer-invalid:text-pink-500">
+										<span className="text-red-400">
+											{formik.touched.password && formik.errors.password
+												? formik.errors.password
+												: ""}
+										</span>
+									</small>
 								</div>
 
 								<div className="flex items-center justify-end mt-4">
-									<button className="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-emerald-500 rounded-lg hover:bg-emerald-400 focus:outline-none focus:ring focus:ring-emerald-300 focus:ring-opacity-50">
+									<button
+										type="submit"
+										className="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-emerald-500 rounded-lg hover:bg-emerald-400 focus:outline-none focus:ring focus:ring-emerald-300 focus:ring-opacity-50">
 										Sign In
 									</button>
 								</div>
@@ -79,8 +134,6 @@ function Login() {
 						<div className="flex items-center justify-center py-4 text-center bg-gray-50 ">
 							<span className="text-sm text-gray-600 ">Login hanya untuk Admin</span>
 						</div>
-						{console.log(isLogin)}
-						<button onClick={() => setIsLogin(isLogin)}>asdasd</button>
 					</div>
 				</div>
 			</div>
