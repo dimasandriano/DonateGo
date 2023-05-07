@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, redirect, useNavigate } from "react-router-dom";
 import { store } from "../config/zustand/store";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -36,6 +36,9 @@ function Login() {
 			formik.resetForm();
 		},
 	});
+	if (isLogin) {
+		return <Navigate to="/admin/dashboard" />;
+	}
 	return (
 		<div>
 			<AlertContainer />
