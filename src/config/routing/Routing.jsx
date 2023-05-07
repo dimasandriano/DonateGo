@@ -9,6 +9,7 @@ import {
 	LandingPage,
 	Login,
 } from "../../pages";
+import AdminEditDonatur from "../../pages/Admin/AdminEditDonatur";
 
 export const Routing = [
 	{
@@ -44,6 +45,11 @@ export const Routing = [
 	{
 		path: "/admin/donasi/:uuid",
 		element: <AdminEditDonasi />,
+		isPrivate: true,
+	},
+	{
+		path: "/admin/donatur/:id",
+		element: <AdminEditDonatur />,
 		isPrivate: true,
 	},
 	{

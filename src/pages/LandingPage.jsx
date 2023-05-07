@@ -5,7 +5,7 @@ import Donasi from "../component/organisms/Donasi/Donasi";
 import RootLayout from "../layout/RootLayout";
 import { useSubscription } from "@apollo/client";
 import { getDonationCard } from "../config/apollo/donasi";
-import { getDonatur, getDonaturVerif } from "../config/apollo/dashboard";
+import { getDonaturVerif } from "../config/apollo/dashboard";
 
 function LandingPage() {
 	const { loading, data } = useSubscription(getDonationCard);

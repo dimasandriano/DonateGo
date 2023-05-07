@@ -20,8 +20,15 @@ import AlertContainer from "../../component/atoms/Alert/AlertContainer";
 import { useNavigate } from "react-router-dom";
 function AdminDonasi() {
 	const [showModal, setShowModal] = useState(true);
+	const [judul, setJudul] = useState("");
+	const [limit, setLimit] = useState(10);
 	const navigate = useNavigate();
-	const { data: listDonasi, loading } = useSubscription(getDonasiAdmin);
+	const { data: listDonasi, loading } = useSubscription(getDonasiAdmin, {
+		variables: {
+			limit,
+			judul: `%${judul}%`,
+		},
+	});
 	const [insertDonateInAdmin, { error: errorinsertDonateInAdmin }] = useMutation(
 		insertDonationInAdmin
 	);
@@ -51,7 +58,7 @@ function AdminDonasi() {
 			});
 			setShowModal(false);
 			AlertInfo("Proses.....");
-			if (errorDeleteDonasiById) {
+			if (errorinsertDonateInAdmin) {
 				AlertError("Gagal");
 			} else {
 				setTimeout(() => {
@@ -69,7 +76,7 @@ function AdminDonasi() {
 				},
 			});
 			AlertInfo("Proses.....");
-			if (errorinsertDonateInAdmin) {
+			if (errorDeleteDonasiById) {
 				AlertError("Gagal");
 			} else {
 				setTimeout(() => {
@@ -77,6 +84,9 @@ function AdminDonasi() {
 				}, 1000);
 			}
 		}
+	};
+	const handleLoadMore = () => {
+		setLimit(limit + 10);
 	};
 	return (
 		<>
@@ -193,7 +203,14 @@ function AdminDonasi() {
 						)}
 					</div>
 				</div>
-				<div className="flex flex-col p-5">
+				<input
+					type="text"
+					placeholder="Masukkan Judul Donasi"
+					value={judul}
+					onChange={(e) => setJudul(e.target.value)}
+					className="block w-full md:w-1/3 mb-3 px-4 py-2 my-3 mx-5 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-emerald-400  focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-emerald-300"
+				/>
+				<div className="flex flex-col px-5 pb-3">
 					<div className="overflow-x-auto">
 						<div className="inline-block min-w-full  align-middle">
 							<div className="overflow-hidden border border-gray-200 md:rounded-lg">
@@ -217,17 +234,21 @@ function AdminDonasi() {
 
 											<th
 												scope="col"
+												className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 ">
+												<button>
+													<span>Terkumpul</span>
+												</button>
+											</th>
+											<th
+												scope="col"
 												className="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 ">
 												<button>
 													<span>Target</span>
 												</button>
 											</th>
-
-											<th
-												scope="col"
-												className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 ">
+											<th className="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500">
 												<button>
-													<span>Terkumpul</span>
+													<span>Link Foto</span>
 												</button>
 											</th>
 
@@ -256,13 +277,21 @@ function AdminDonasi() {
 																{item.judul_donasi}
 															</h2>
 														</td>
+														<td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+															Rp {item.terkumpul_donasi.toLocaleString()}
+														</td>
 														<td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
 															<h2 className="text-sm font-normal ">
 																Rp {item.target_donasi.toLocaleString()}
 															</h2>
 														</td>
-														<td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
-															Rp {item.terkumpul_donasi.toLocaleString()}
+														<td className="px-12 py-4 text-sm font-medium text-blue-500 whitespace-wrap overflow-hidden block w-52">
+															<a
+																className="text-sm font-normal truncate"
+																href={item.foto_donasi}
+																target="_blank">
+																{item.foto_donasi}
+															</a>
 														</td>
 														<td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
 															{moment(item.timestamp).format("DD MMMM YYYY")}
@@ -313,10 +342,22 @@ function AdminDonasi() {
 											})}
 									</tbody>
 								</table>
+								{listDonasi?.donasi.length == 0 && (
+									<div className="flex justify-center w-full py-5">Data Tidak Ada</div>
+								)}
 								{loading && <Loading css="w-10" />}
 							</div>
 						</div>
 					</div>
+				</div>
+				<div className="px-5">
+					{listDonasi?.donasi.length == limit && (
+						<button
+							onClick={handleLoadMore}
+							className="px-3 py-2 rounded-md bg-emerald-500 text-white">
+							Load More
+						</button>
+					)}
 				</div>
 			</AdminLayout>
 		</>

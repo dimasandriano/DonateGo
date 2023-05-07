@@ -1,7 +1,9 @@
 import React from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { store } from "../../../config/zustand/store";
-
+import { RiLogoutCircleFill } from "react-icons/ri";
+import { useSubscription } from "@apollo/client";
+import { getDonaturUnverif } from "../../../config/apollo/adminDonasi";
 function Sidebar() {
 	const navigate = useNavigate();
 	const setLogin = store((state) => state.setLogin);
@@ -11,6 +13,8 @@ function Sidebar() {
 			setLogin(false);
 		}
 	};
+	const { data } = useSubscription(getDonaturUnverif);
+	const unVerif = data?.history_donasi.map((item) => item).length;
 	return (
 		<div>
 			<div className="shadow-sm">
@@ -87,7 +91,7 @@ function Sidebar() {
 									<button
 										type="button"
 										className="w-6 h-6 text-xs  rounded-full text-white bg-red-500">
-										<span className="p-1">7</span>
+										<span className="p-1">{unVerif}</span>
 									</button>
 								</span>
 							</a>
@@ -109,15 +113,7 @@ function Sidebar() {
 							<a
 								className="hover:text-gray-800 cursor-pointer hover:bg-emerald-100 flex items-center p-2 my-6 transition-colors   duration-200  text-gray-600  rounded-lg "
 								onClick={handleLogout}>
-								<svg
-									width="20"
-									height="20"
-									className="m-auto"
-									fill="currentColor"
-									viewBox="0 0 2048 1792"
-									xmlns="http://www.w3.org/2000/svg">
-									<path d="M1070 1178l306-564h-654l-306 564h654zm722-282q0 182-71 348t-191 286-286 191-348 71-348-71-286-191-191-286-71-348 71-348 191-286 286-191 348-71 348 71 286 191 191 286 71 348z"></path>
-								</svg>
+								<RiLogoutCircleFill />
 								<span className="mx-4 text-lg font-normal">Logout</span>
 								<span className="flex-grow text-right"></span>
 							</a>

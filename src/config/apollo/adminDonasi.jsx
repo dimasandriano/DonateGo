@@ -1,12 +1,17 @@
 import { gql } from "@apollo/client";
 
 export const getDonasiAdmin = gql`
-	subscription getDonasiAdmin {
-		donasi(order_by: { id: asc }) {
+	subscription getDonasiAdmin($judul: String!, $limit: Int!) {
+		donasi(
+			order_by: { id: asc }
+			where: { judul_donasi: { _ilike: $judul } }
+			limit: $limit
+		) {
 			id
 			judul_donasi
 			target_donasi
 			terkumpul_donasi
+			foto_donasi
 			timestamp
 			uuid
 		}
@@ -70,6 +75,13 @@ export const updateDonationByUuid = gql`
 			}
 		) {
 			affected_rows
+		}
+	}
+`;
+export const getDonaturUnverif = gql`
+	subscription getDonaturUnverif {
+		history_donasi(where: { isverif: { _eq: false } }) {
+			id_history
 		}
 	}
 `;
