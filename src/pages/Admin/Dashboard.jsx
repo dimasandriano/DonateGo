@@ -45,7 +45,7 @@ function Dashboard() {
 					<div className="col-span-3">
 						<div
 							className="pl-1 w-full h-20 bg-pink-400 rounded-lg shadow-md border border-pink-300 cursor-pointer hover:scale-105 transition"
-							onClick={handlePageDonasi}>
+							onClick={handlePageDonatur}>
 							<div className="flex w-full h-full py-2 px-4 bg-white rounded-lg justify-between">
 								<div className="my-auto">
 									<p className="font-bold">Donatur</p>
@@ -72,7 +72,7 @@ function Dashboard() {
 					<div className="col-span-3">
 						<div
 							className="pl-1 w-full h-20 bg-emerald-400 rounded-lg shadow-md border border-emerald-300 cursor-pointer hover:scale-105 transition"
-							onClick={handlePageDonasi}>
+							onClick={handlePageDonatur}>
 							<div className="flex w-full h-full py-2 px-4 bg-white rounded-lg justify-between">
 								<div className="my-auto">
 									<p className="font-bold">Terverif/Sukses</p>
@@ -103,7 +103,7 @@ function Dashboard() {
 					<div className="col-span-3">
 						<div
 							className="pl-1 w-full h-20 bg-pink-400 rounded-lg shadow-md border border-pink-300 cursor-pointer hover:scale-105 transition"
-							onClick={handlePageDonasi}>
+							onClick={handlePageDonatur}>
 							<div className="flex w-full h-full py-2 px-4 bg-white rounded-lg justify-between">
 								<div className="my-auto">
 									<p className="font-bold">Tidak Verif/Gagal</p>
@@ -134,7 +134,7 @@ function Dashboard() {
 					<div className="col-span-3">
 						<div
 							className="pl-1 w-full h-20 bg-yellow-400 rounded-lg shadow-md border border-yellow-300 cursor-pointer hover:scale-105 transition"
-							onClick={handlePageDonatur}>
+							onClick={handlePageDonasi}>
 							<div className="flex w-full h-full py-2 px-4 bg-white rounded-lg justify-between">
 								<div className="my-auto">
 									<p className="font-bold">Tempat Donasi</p>
