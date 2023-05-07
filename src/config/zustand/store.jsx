@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { loginSlice } from "./LoginSlice";
+import { loginSlice } from "./loginSlice";
 
 export const store = create(
 	persist(
