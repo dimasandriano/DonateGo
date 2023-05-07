@@ -149,10 +149,10 @@ function AdminDonatur() {
 														<td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-wrap">
 															<h2 className="font-normal text-gray-800  ">{item.nama}</h2>
 														</td>
-														<td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap block">
+														<td className="px-4 py-4 text-sm text-gray-500  whitespace-wrap block">
 															{item.email}
 														</td>
-														<td className="px-12 py-4 text-sm  text-gray-700 whitespace-nowrap">
+														<td className="px-12 py-4 text-sm  text-gray-700 whitespace-wrap">
 															{item.nohp}
 														</td>
 														<td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">

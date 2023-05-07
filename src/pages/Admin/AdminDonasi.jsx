@@ -3,6 +3,7 @@ import AdminLayout from "../../layout/AdminLayout";
 import { useMutation, useSubscription } from "@apollo/client";
 import {
 	deleteDonationById,
+	deleteDonaturByIdDonation,
 	getDonasiAdmin,
 	insertDonationInAdmin,
 } from "../../config/apollo/adminDonasi";
@@ -34,6 +35,9 @@ function AdminDonasi() {
 	);
 	const [deleteDonasiById, { error: errorDeleteDonasiById }] =
 		useMutation(deleteDonationById);
+	const [deleteDonaturById, { error: errorDeleteDonaturById }] = useMutation(
+		deleteDonaturByIdDonation
+	);
 	const formik = useFormik({
 		initialValues: {
 			judul_donasi: "",
@@ -71,6 +75,11 @@ function AdminDonasi() {
 	const handleDelete = (id) => {
 		if (window.confirm("Apakah Anda yakin ingin menghapus data ini?")) {
 			deleteDonasiById({
+				variables: {
+					id,
+				},
+			});
+			deleteDonaturById({
 				variables: {
 					id,
 				},

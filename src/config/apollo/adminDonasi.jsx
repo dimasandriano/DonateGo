@@ -85,3 +85,10 @@ export const getDonaturUnverif = gql`
 		}
 	}
 `;
+export const deleteDonaturByIdDonation = gql`
+	mutation deleteDonaturByIdDonation($id: Int!) {
+		delete_history_donasi(where: { id_donasi: { _eq: $id } }) {
+			affected_rows
+		}
+	}
+`;
