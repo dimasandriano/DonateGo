@@ -67,6 +67,7 @@ function AdminDonasi() {
 			} else {
 				setTimeout(() => {
 					AlertSuccess("Berhasil");
+					setShowModal(true);
 				}, 1000);
 			}
 		},
