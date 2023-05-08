@@ -117,6 +117,12 @@ function Detail({ donasi, loading }) {
 									</span>
 								</div>
 							</div>
+							<div className="rounded bg-emerald-500 p-2 mt-2 text-white">
+								<div className="flex justify-between">
+									<h3>Rekening</h3>
+									<span>615601024054531</span>
+								</div>
+							</div>
 						</div>
 						<div className="bg-white rounded-lg shadow p-4 mb-3">
 							{showModal && (
