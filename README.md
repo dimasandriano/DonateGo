@@ -1,6 +1,6 @@
-## :hibiscus: DonateGo
-
-Aplikasi DonateGo adalah aplikasi yang bertujuan untuk memudahkan pengguna dalam melakukan donasi untuk suatu kegiatan atau program yang membutuhkan bantuan. Dengan aplikasi simpel donasi ini, diharapkan dapat memudahkan pengguna dalam melakukan donasi dan juga mempermudah admin dalam mengelola donasi yang masuk.
+# :hibiscus: DonateGo
+![](https://raw.githubusercontent.com/dimasandriano/DonateGo/main/donatego.png)
+<p>Aplikasi DonateGo adalah aplikasi yang bertujuan untuk memudahkan pengguna dalam melakukan donasi untuk suatu kegiatan atau program yang membutuhkan bantuan. Dengan aplikasi simpel donasi ini, diharapkan dapat memudahkan pengguna dalam melakukan donasi dan juga mempermudah admin dalam mengelola donasi yang masuk. </p>
 
 ## :wrench: Information
 
