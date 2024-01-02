@@ -117,6 +117,10 @@ function Detail({ donasi, loading }) {
 									</span>
 								</div>
 							</div>
+							<p className="text-sm italic text-slate-400 my-2">
+								*Donasi yang terkumpul tidak dapat dikembalikan dan 5% dari donasi yang
+								terkumpul akan digunakan admin untuk pengembangan website.
+							</p>
 							<div className="rounded bg-emerald-500 p-2 mt-2 text-white">
 								<div className="flex justify-between">
 									<h3>Rekening</h3>
